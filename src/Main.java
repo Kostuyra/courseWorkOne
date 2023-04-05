@@ -1,15 +1,15 @@
 public class Main {
-	static Employee[] Employees = new Employee[10];
+	private static Employee[] employees = new Employee[10];
 
 	public static void main(String[] args) {
 
-		Employee empl = new Employee("Ivanov Ivan Semenovich", 1, 25500.0);
-		Employee empl2 = new Employee("Petrov Vasiliy Ivanovich", 2, 50000.0);
+		employees[0] = new Employee("Ivanov Ivan Semenovich", 1, 25500.0);
+		employees[1] = new Employee("Petrov Vasiliy Ivanovich", 2, 50000.0);
 
 	}
 
 	static void allEmployees() {
-		for (Employee i : Employees) {
+		for (Employee i : employees) {
 			if (isNull(i)) {
 				continue;
 			}
@@ -19,19 +19,19 @@ public class Main {
 
 	static double getSumSalaries() {
 		double sum = 0.0;
-		for (Employee i : Employees) {
-			if (isNull(i)) {
+		for (Employee employee : employees) {
+			if (isNull(employee)) {
 				continue;
 			}
-			sum += i.getSalary();
+			sum += employee.getSalary();
 		}
 		return sum;
 	}
 
 	static int getCountEmployees() {
 		int count = 0;
-		for (Employee i : Employees) {
-			if (isNull(i)) {
+		for (Employee employee : employees) {
+			if (isNull(employee)) {
 				continue;
 			}
 			count++;
@@ -39,58 +39,55 @@ public class Main {
 		return count;
 	}
 
-	static String getEmployeeWithMinSalary() {
+	static Employee getEmployeeWithMinSalary() {
 		double salary = 999_999_999_999.0;
-		String nameEmployee = "";
-		for (Employee i : Employees) {
-			if (isNull(i)) {
+		Employee employeeWithMinSal = null;
+		for (Employee employee : employees) {
+			if (isNull(employee)) {
 				continue;
 			}
-			if (salary > i.getSalary()) {
-				salary = i.getSalary();
-				nameEmployee = i.getFullName();
+			if (salary > employee.getSalary()) {
+				salary = employee.getSalary();
+				employeeWithMinSal = employee;
 			}
 		}
-		return nameEmployee;
+		return employeeWithMinSal;
 	}
 
-	static String getEmployeeWithMaxSalary() {
+	static Employee getEmployeeWithMaxSalary() {
 		double salary = 0.0;
-		String nameEmployee = "";
-		for (Employee i : Employees) {
-			if (isNull(i)) {
+		Employee employeeWithMaxSal = null;
+		for (Employee employee : employees) {
+			if (isNull(employee)) {
 				continue;
 			}
-			if (salary < i.getSalary()) {
-				salary = i.getSalary();
-				nameEmployee = i.getFullName();
+			if (salary < employee.getSalary()) {
+				salary = employee.getSalary();
+				employeeWithMaxSal = employee;
 			}
 		}
-		return nameEmployee;
+		return employeeWithMaxSal;
 	}
 
 	static double getAvrSalary() {
 		double avr = 0.0;
-		if (getCountEmployees() != 0) {
-			avr = getSumSalaries() / getCountEmployees();
+		int countEmployees = getCountEmployees();
+		if (countEmployees != 0) {
+			avr = getSumSalaries() / countEmployees;
 		}
 		return avr;
 	}
 
 	static void getNameAllEmployees() {
-		for (Employee i : Employees) {
-			if (isNull(i)) {
+		for (Employee employee : employees) {
+			if (isNull(employee)) {
 				continue;
 			}
-			System.out.println(i.getFullName());
+			System.out.println(employee.getFullName());
 		}
 	}
 
-	static boolean isNull(Employee employee){
-		boolean boolEmpl = false;
-		if (employee == null) {
-			boolEmpl = true;
-		}
-		return boolEmpl;
+	static boolean isNull(Employee employee) {
+		return employee == null;
 	}
 }

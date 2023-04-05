@@ -10,7 +10,6 @@ public class Employee {
 		this.fullName = fullName;
 		this.partOffice = partOffice;
 		this.salary = salary;
-		addEmployee(this);
 	}
 
 	@Override
@@ -42,10 +41,6 @@ public class Employee {
 
 	public void setSalary(double salary) {
 		this.salary = salary;
-	}
-
-	static void addEmployee(Employee employee) {
-		Main.Employees[employee.getId()] = employee;
 	}
 
 }
