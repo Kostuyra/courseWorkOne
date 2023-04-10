@@ -1,5 +1,5 @@
 public class EmployeeBook {
-	private Employee[] employees;
+	final private Employee[] employees;
 
 	public EmployeeBook() {
 		this.employees = new Employee[10];
@@ -19,7 +19,7 @@ public class EmployeeBook {
 			if (isNull(employees[i])) {
 				continue;
 			}
-			if (employees[i].getId() == id && employees[i].getFullName() == fullName) {
+			if (employees[i].getId() == id && employees[i].getFullName().equals(fullName)) {
 				employees[i] = null;
 				break;
 			}
@@ -31,7 +31,7 @@ public class EmployeeBook {
 			if (isNull(employees[i])) {
 				continue;
 			}
-			if (employees[i].getFullName() == fullName) {
+			if (employees[i].getFullName().equals(fullName)) {
 				employees[i].setSalary(newSalary);
 				System.out.println("Зарплата сотрудника " + fullName + " изменена");
 				break;
@@ -45,7 +45,7 @@ public class EmployeeBook {
 			if (isNull(employees[i])) {
 				continue;
 			}
-			if (employees[i].getFullName() == fullName) {
+			if (employees[i].getFullName().equals(fullName)) {
 				employees[i].setPartOffice(newPartOffice);
 				System.out.println("Отдел сотрудника " + fullName + " изменен");
 				break;
@@ -55,37 +55,39 @@ public class EmployeeBook {
 	}
 
 	public void getAllEmployeesFromPartOffice() {
-		String messageOne = "Отдел № 1: ";
-		String messageTwo = "Отдел № 2: ";
-		String messageThree = "Отдел № 3: ";
-		String messageFour = "Отдел № 4: ";
-		String messageFive = "Отдел № 5: ";
+		StringBuilder messageOne = new StringBuilder("Отдел № 1: ");
+		StringBuilder messageTwo = new StringBuilder("Отдел № 2: ");
+		StringBuilder messageThree = new StringBuilder("Отдел № 3: ");
+		StringBuilder messageFour = new StringBuilder("Отдел № 4: ");
+		StringBuilder messageFive = new StringBuilder("Отдел № 5: ");
+
 		for (int i = 0; i < employees.length; i++) {
 			if (isNull(employees[i])){
 				continue;
 			}
 			if (employees[i].getPartOffice() == 1) {
-				messageOne += employees[i].getFullName() + ", ";
+				messageOne.append(" " + employees[i].getFullName() + ", ");
 				continue;
 			}
 			if (employees[i].getPartOffice() == 2) {
-				messageTwo += employees[i].getFullName() + ", ";
+				messageTwo.append(" " + employees[i].getFullName() + ", ");
 				continue;
 			}
 			if (employees[i].getPartOffice() == 3) {
-				messageThree += employees[i].getFullName() + ", ";
+				messageThree.append(" " + employees[i].getFullName() + ", ");
 				continue;
 			}
 			if (employees[i].getPartOffice() == 4) {
-				messageFour += employees[i].getFullName() + ", ";
+				messageFour.append(" " + employees[i].getFullName() + ", ");
 				continue;
 			}
 			if (employees[i].getPartOffice() == 5) {
-				messageFive += employees[i].getFullName() + ", ";
+				messageFive.append(" " + employees[i].getFullName() + ", ");
 			}
 
 		}
-		System.out.println(messageOne +"\n" + messageTwo +"\n" + messageThree +"\n" + messageFour +"\n" + messageFive);
+		System.out.println(messageOne.append("\n").append(messageTwo).append("\n").append(messageThree).append("\n").append(messageFour).append("\n").append(messageFive));
+
 	}
 
 
